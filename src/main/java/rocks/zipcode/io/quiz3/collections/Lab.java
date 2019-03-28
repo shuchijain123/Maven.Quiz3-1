@@ -3,26 +3,26 @@ package rocks.zipcode.io.quiz3.collections;
 /**
  * @author leon on 10/12/2018.
  */
-public class Lab {
+public class Lab implements Comparable<Lab> {
 
-    String labName="duplicate deleter";
-    LabStatus labStatus=LabStatus.PENDING;
+
+
+
+    String labName;
+
 
 
     public Lab() {
 
 
 
-       this.labName=labName;
-       this.labStatus=labStatus;
+       this(" ");
+
     }
 
     public Lab(String labName) {
 
         this.labName=labName;
-
-
-
 
 
     }
@@ -33,14 +33,16 @@ public class Lab {
         return labName;
     }
 
-    public void setStatus(LabStatus labStatus) {
 
-        this.labStatus=labStatus;
 
+    @Override
+    public int compareTo(Lab o) {
+
+
+
+        int lab = labName.compareTo(o.labName);
+        return lab;
     }
 
-    public LabStatus getStatus() {
 
-        return  labStatus;
-    }
 }

@@ -1,5 +1,6 @@
 package rocks.zipcode.io.quiz3.generics;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -58,14 +59,25 @@ public class ArrayUtility<SomeType > {
     }
 
 
-    public SomeType[] filter(Function<SomeType, Boolean> predicate)
+    public SomeType[] filter(Function<SomeType, Boolean> predicate){
 
-    {
-       // SomeType[]  numberArray = Arrays.stream(array).filter(c->predicate.apply(SomeType).toArray((Object[]::new));
+//    {
+//        for (SomeType type: array)
+//       SomeType[]  numberArray = Arrays.stream(array).filter(c->predicate.apply(type).t(Object[]::new));
+//
+//      return null;
+//    }
 
-      return null;
+        List<SomeType> list = new ArrayList<>();
+        for (SomeType type : array) {
+            if (predicate.apply(type)) {
+                list.add(type);
+            }
+        }
+        SomeType[] newArray = Arrays.copyOf(array, list.size());
+
+        return list.toArray(newArray);
     }
-
 
 
 

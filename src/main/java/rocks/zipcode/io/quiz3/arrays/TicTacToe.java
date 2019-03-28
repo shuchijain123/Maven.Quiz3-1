@@ -41,60 +41,84 @@ this.board=board;
 
     {
 
-        Boolean ans=true;
-        String []myRow= getRow(rowIndex);
+        String[] row = getRow(rowIndex);
 
-        for (int i=0;i<myRow.length;i++){
-
-            for (int j=1;j<myRow.length-1;j++){
-
-
-                if (myRow[i]==myRow[j]){
-
-                    ans=true;
-                }
-
-                else{
-                    ans=false;
-                }
-            }
-        }
-        return ans;
+        return allValuesTheSame(row);
     }
 
     public Boolean isColumnHomogeneous(Integer columnIndex) {
 
 
-        boolean ans = false;
         String[] row = getColumn(columnIndex);
 
-        for (int i = 0; i < row.length-1; i++) {
-            for (int j = 0; i < row.length - 1; i++) {
+        return allValuesTheSame(row);
+    }
 
-                if (row[i] == "O") ;
-
-                ans = true;
-
-
+    private Boolean allValuesTheSame(String[] row) {
+        for (int i = 1; i < row.length; i++) {
+            if (!row[i].equals(row[0])) {
+                return false;
             }
-
         }
-        return ans;
+
+        return true;
     }
 
 
     public String getWinner() {
 
-        
 
+
+//check row
+        for(int i = 0; i < board.length; i++) {
+            if (isRowHomogenous(i)) {
+                return board[i][0];
+            }
+        }
+
+        //check column
+        for(int i = 0; i < board.length; i++) {
+            if (isColumnHomogeneous(i)) {
+                return board[0][i];
+            }
+        }
+
+        //left to right
+        String[] diagonal = getDiagonal();
+        if (allValuesTheSame(diagonal)) {
+            return diagonal[0];
+        }
+
+        //right to left
+        String[] otherDiagonal = getOtherDiagonal();
+        if (allValuesTheSame(otherDiagonal)) {
+            return otherDiagonal[0];
+        }
 
         return null;
+    }
+
+    public String[] getDiagonal(){
+        String[] diagonal = new String[board.length];
+        for (int i = 0; i < board.length; i++) {
+            diagonal[i] = board[i][i];
+        }
+        return diagonal;
+    }
+
+    public String[] getOtherDiagonal(){
+        String[] diagonal = new String[board.length];
+        for (int i = 0; i < board.length; i++) {
+            int row = board.length - 1 - i;
+            diagonal[i] = board[row][i];
+        }
+        return diagonal;
     }
 
     public String[][] getBoard()
 
 
     {
-        return null;
+        return board;
     }
 }
