@@ -4,9 +4,7 @@ package rocks.zipcode.io.quiz3.fundamentals;
  * @author leon on 09/12/2018.
  */
 public class PigLatinGenerator {
-    public String translate(String str){
-
-
+    public String translate(String str) {
 
         String[] words = str.split(" ");
         StringBuilder builder = new StringBuilder();
@@ -27,8 +25,9 @@ public class PigLatinGenerator {
                 }
             }
         }
-        builder.deleteCharAt(builder.length() - 1);
+        builder.deleteCharAt(builder.length()-1);
         return builder.toString();
 
     }
+
 }
